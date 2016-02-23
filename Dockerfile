@@ -1,5 +1,7 @@
 #FROM quay.io/serhs/golang:1.4.2
 FROM golang:1.5
+#FROM golang:1.5.3-onbuild
+
 
 # GPM
 #RUN git clone https://github.com/pote/gpm.git && cd gpm && ./configure && make install && rm -rf /go/gpm
