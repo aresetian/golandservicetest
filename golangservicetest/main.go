@@ -3,9 +3,9 @@ package main
 import (
 	"gopkg.in/gcfg.v1"
 	"net/http"
-	"golandservicetest/golangservicetest/handler"
-	"golandservicetest/golangservicetest/log"
-	"golandservicetest/golangservicetest/util"
+	"golangservicetest/golangservicetest/handler"
+	"golangservicetest/golangservicetest/log"
+	"golangservicetest/golangservicetest/util"
 	"flag"
 )
 
