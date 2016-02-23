@@ -14,3 +14,7 @@ c9 is the context and
 State is the URI that was config in the project
 
 
+
+I created the docker image with 
+docker build -t service-go-andres .
+
