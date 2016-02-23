@@ -3,9 +3,9 @@ package main
 import (
 	"gopkg.in/gcfg.v1"
 	"net/http"
-	"golandservicetest/handler"
-	"golandservicetest/log"
-	"golandservicetest/util"
+	"golandservicetest/golangservicetest/handler"
+	"golandservicetest/golangservicetest/log"
+	"golandservicetest/golangservicetest/util"
 	"flag"
 )
 
@@ -15,6 +15,7 @@ var fileConfig = flag.String("fileconfig", "", "The configuration file")
 
 
 func initLogs(pPath, pNameFile string, pLogLevel int) {
+
    log.InitLog(pPath+pNameFile, pLogLevel)
 }
 
@@ -25,6 +26,7 @@ func main(){
 	  flag.Parse()
 	
 	  var cfgConfig util.Config
+	
 	
 	  // It reads the configuration file and it will filled the fileConfig Struct
 	  err1 := gcfg.ReadFileInto(&cfgConfig, *fileConfig)
@@ -42,9 +44,11 @@ func main(){
 	  
 	  // If debug is enable, this message will be printed
 	  log.Debug("Server Started")
+	  
 	  // The server is started
-	  //Only the ports 8080, 8081 y 8082  can be visibles on the Internet when it works with cloud9
+	  // Only the ports 8080, 8081 y 8082  can be visibles on the Internet when it works with cloud9
  	  err := http.ListenAndServe(":8080", nil)
+	  
 	  // If an Error occur
 	  if err != nil {
 	    log.Error("The service could be started", err.Error())

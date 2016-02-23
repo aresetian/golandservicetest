@@ -1,0 +1,30 @@
+FROM quay.io/serhs/golang:1.4.2
+
+# GPM
+RUN git clone https://github.com/pote/gpm.git && cd gpm && ./configure && make install && rm -rf /go/gpm
+RUN go get github.com/tools/godep
+
+ENV GOROOT /usr/src/go
+#ENV GOROOT=/go
+ENV GOBIN $GOROOT/bin
+ENV GOPATH=/go
+
+# Add Godeps first-in-order to support dependency caching
+#ADD com.serhs.util.dataservice/Godeps /go/
+#RUN gpm install
+
+# Add code
+ADD golangservicetest /go/src/golandservicetest/golangservicetest
+#ADD pi-comunicationslib /go/src/pi-comunicationslib
+
+RUN cd /go/src/golandservicetest/golangservicetest && godep go clean && godep go build && godep go install
+# Add Custom
+#ADD assets/cfg/dsclientconfig.ini /.setup/
+ADD assets/cfg/config.ini /.setup/
+ADD assets/run.sh /
+
+
+#Creamos el directorio de log
+RUN mkdir -p /logs/
+RUN chmod +x /run.sh
+CMD /run.sh
