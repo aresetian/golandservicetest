@@ -13,5 +13,5 @@ echo "Generating config.ini..."
 envsubst < /.setup/config.ini > /go/src/golangservicetest/golangservicetest/config.ini
 
 
-# Start dataservice
+# Start Service
 cd /go/src/golangservicetest/golangservicetest/ && ./golangservicetest -fileconfig=config.ini
