@@ -5,7 +5,7 @@ import (
   "encoding/json"
   "net/http"
   "os"
-  "golandservicetest/golangservicetest/log"
+  "golangservicetest/golangservicetest/log"
 )
 
 /*
