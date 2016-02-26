@@ -3,20 +3,27 @@ FROM golang:1.5
 #FROM golang:1.5.3-onbuild
 
 
-ENV GETTEXT_DOWNLOAD_URL http://ftp.gnu.org/gnu/gettext/gettext-0.19.5.tar.gz
+ENV GETTEXT_DOWNLOAD_URL http://ftp.gnu.org/gnu/gettext/gettext-0.19.6.tar.gz
 #ENV GOLANG_DOWNLOAD_SHA256 43afe0c5017e502630b1aea4d44b8a7f059bf60d7f29dfd58db454d4e4e0ae53
 
 RUN mkdir -p /gettext/
 
-RUN curl -fsSL "$GETTEXT_DOWNLOAD_URL" -o gettext.tar.gz \	
-	&& tar -C /gettext/ -xzf gettext.tar.gz \
-	&& rm gettext.tar.gz \
-        && cd /gettext/gettext-0.19.5/ \
+RUN echo "$GETTEXT_DOWNLOAD_URL"
+
+#RUN curl -fsSL "$GETTEXT_DOWNLOAD_URL" -o gettext.tar.gz \	
+#	&& tar -C /gettext/ -xzf gettext.tar.gz \
+#	&& rm gettext.tar.gz \
+#        && cd /gettext/gettext-0.19.6/ \
+#        && ./configure \
+#        && make \
+#        && make install 
+
+ADD gettext-0.19.5 /go/src/gettext-0.19.5
+
+RUN  cd /go/src/gettext-0.19.5/ \
         && ./configure \
         && make \
         && make install 
-
-
 
 
 # GPM
@@ -40,7 +47,7 @@ ENV GOBIN $GOPATH/bin
 ADD golangservicetest /go/src/golangservicetest/golangservicetest
 #ADD pi-comunicationslib /go/src/pi-comunicationslib
 
-#RUN cd /go/src/golangservicetest/golangservicetest && go clean && go build 
+RUN cd /go/src/golangservicetest/golangservicetest && go clean && go build 
 #RUN cd /go/src/golangservicetest/golangservicetest && go clean && go build && go install
 # Add Custom
 #ADD assets/cfg/dsclientconfig.ini /.setup/
