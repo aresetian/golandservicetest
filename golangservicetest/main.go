@@ -1,5 +1,7 @@
 package main
 
+// https://godoc.org/github.com/golang/protobuf/proto
+
 import (
 	"gopkg.in/gcfg.v1"
 	"net/http"
